@@ -21,7 +21,7 @@ import MyImage from 'images/asset.img'
 Instead you can inline paths so you don't need to track so many variable names in addition to filenames
 
 ```jsx
-import Image from '@gvkhna/astro-media'
+import Image from 'astro-media'
 
 <Image src={import('images/asset.img')}>
 ```

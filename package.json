@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "types": "./dist/index.d.ts",
-  "author": "withastro",
+  "author": "gvkhna",
   "license": "MIT",
   "repository": {
     "type": "git",
