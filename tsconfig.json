@@ -1,0 +1,19 @@
+{
+  "include": ["integration", "types.d.ts", "client.d.ts"],
+  "exclude": ["src", "index.ts"],
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "module": "ESNext",
+    "outDir": "./dist",
+    "target": "ES6",
+    "typeRoots": ["node_modules/@types"]
+  }
+}
