@@ -76,6 +76,7 @@ When the Astro component Image is initialized, it sees the following url
 
 ```
 myimage.png?width=180&height=220&format=png&size=3200&...
+```
 
 All of this metadata is then interpreted so if you have specified one attribute such as only the width, it will use the metadata to aspect ratio scale the image to that width. 
 

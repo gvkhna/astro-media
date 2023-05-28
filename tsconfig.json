@@ -1,5 +1,5 @@
 {
-  "include": ["integration", "types.d.ts", "client.d.ts"],
+  "include": ["integration", "types.d.ts"],
   "exclude": ["src", "index.ts"],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
