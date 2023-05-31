@@ -1,6 +1,6 @@
 {
-  "include": ["integration", "types.d.ts"],
-  "exclude": ["src", "index.ts"],
+  "include": ["index.ts", "integration", "types.d.ts"],
+  "exclude": ["src"],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "declaration": true,
