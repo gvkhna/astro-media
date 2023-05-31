@@ -1,8 +1,9 @@
 {
   "name": "astro-media",
   "description": "Load and transform images and svgs/vectors in your Astro site.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "author": "gvkhna",
   "license": "MIT",
@@ -21,7 +22,6 @@
   ],
   "bugs": "https://github.com/gvkhna/astro-media/issues",
   "homepage": "https://github.com/gvkhna/astro-media",
-  "main": "index.ts",
   "exports": {
     ".": "./index.ts",
     "./integration": "./dist/index.js",
