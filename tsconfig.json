@@ -1,11 +1,12 @@
 {
-  "include": ["index.ts", "integration", "types.d.ts"],
-  "exclude": ["src"],
+  "include": ["./index.ts", "./integration", "./types.d.ts"],
+  "exclude": ["./dist"],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "emitDeclarationOnly": false,
     "strict": true,
+    "jsx": "react-jsx",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,

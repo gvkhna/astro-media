@@ -5,15 +5,15 @@ import type {HTMLAttributes} from 'astro/types'
 import type {TransformOptions, OutputFormat} from '../integration/loaders/index'
 import type {ImageMetadata} from '../integration/utils/metadata'
 import type {AstroBuiltinAttributes} from 'astro'
-// @ts-expect-error
+/////////////// @ts-expect-error
 import Image from "./Image.astro";
-// @ts-expect-error
-import Picture from "./Picture.astro";
+/////////// @ts-expect-error
+// import Picture from "./Picture.astro";
 
 export {
   Image as default,
   Image,
-  Picture
+  // Picture
 }
 
 
