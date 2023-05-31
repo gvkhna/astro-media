@@ -2,11 +2,35 @@
 
 > ⚠️ This integration is still experimental/WIP!
 
-Fork of @astro/astro-image designed with more convenience in mind instead of correctness when working with images and vector assets (svgs) in astro. Reducing CLS (Content Layout Shift) is the #1 goal.
+Fork of @astro/astro-image designed with more convenience when working with images and vector assets (svgs) in astro. With `astro-media` you should be able to get 0 CLS (Content Layout Shifts).
 
-# Main ideas/concepts
+# Setup
 
-# Support inline asset path
+```sh
+npm i astro-media
+```
+
+`astro.config.mjs`
+```js
+import media from 'astro-media/integration'
+
+export default defineConfig({
+  integrations: [
+    // towards the top is better
+    media()
+  ]
+})
+```
+
+# Usage
+
+```jsx
+import Image from 'astro-media'
+
+<Image src={import('asset.png')}>
+```
+
+## Support inline asset path
 
 In an attempt to reduce the following code
 
