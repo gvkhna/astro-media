@@ -112,6 +112,15 @@ Planned to add better support for Picture component so additional formats such a
 
 As well multiple resolutions are automatically generated for larger images and specified as src-set in the result <img>.
 
+## Debugging
+
+Run this command to see some internal output in case you encounter errors.
+`DEBUG=astro-media astro dev`
+
+## Releasing
+
+Bump the version number. Create a new Github Release which will trigger the workflow.
+
 ## Contributing
 
 You're welcome to submit an issue or PR!
