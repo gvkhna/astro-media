@@ -13,6 +13,8 @@ export type ImgHTMLAttributes = HTMLAttributes<'img'>
 
 export interface ImageComponentProps
   extends Omit<ImgHTMLAttributes, 'src' | 'width' | 'height'> {
+  width?: number
+  height?: number
   src: Promise<any>
   svgInline?: boolean
   debug?: boolean
@@ -35,11 +37,11 @@ let attrs: any = {}
 let svgContent: string | undefined | null = undefined
 if (src) {
   isSvg = getImageType(src) === 'svg'
-  if (isSvg) {
+  if (isSvg && svgInline) {
     attrs = await getSVGAttributes(src, props)
     svgContent = await getSVGInnerHtml(src)
   } else {
-    attrs = await getImage(src, props as any)
+    attrs = await getImage(src, props as any, isSvg)
   }
 } else {
   debug('astro-media')(`ERROR: loading ${props.src}`)

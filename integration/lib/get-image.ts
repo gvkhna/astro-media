@@ -184,7 +184,8 @@ function resolveTransform(metadata: ImageMetadata, transforms: GetImageTransform
 
 export async function getImage(
   moduleImportURL: string,
-  transforms: GetImageTransform
+  transforms: GetImageTransform,
+  isSvg = false
 ): Promise<astroHTML.JSX.ImgHTMLAttributes> {
   const imageFileMetadata = parseImageFileMetadata(moduleImportURL)
 
@@ -238,9 +239,21 @@ export async function getImage(
     src = globalThis.astroImage.addStaticImage(resolved)
   }
 
-  return {
-    ...resolved,
-    src,
-    srcset
+  if (isSvg) {
+    return {
+      width: resolved.width,
+      height: resolved.height,
+      alt: (resolved as any).alt,
+      src
+    }
+  } else {
+    return {
+      width: resolved.width,
+      height: resolved.height,
+      alt: (resolved as any).alt,
+      src,
+      srcset
+    }
   }
+  
 }
