@@ -112,6 +112,13 @@ Planned to add better support for Picture component so additional formats such a
 
 As well multiple resolutions are automatically generated for larger images and specified as src-set in the result <img>.
 
+## Building
+
+```sh
+pnpm build
+npm publish
+```
+
 ## Debugging
 
 Run this command to see some internal output in case you encounter errors.
