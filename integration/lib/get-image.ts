@@ -241,6 +241,7 @@ export async function getImage(
 
   if (isSvg) {
     return {
+      class: (resolved as any)?.class,
       width: resolved.width,
       height: resolved.height,
       alt: (resolved as any).alt,
@@ -248,6 +249,7 @@ export async function getImage(
     }
   } else {
     return {
+      class: (resolved as any)?.class,
       width: resolved.width,
       height: resolved.height,
       alt: (resolved as any).alt,
