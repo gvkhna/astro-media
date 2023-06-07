@@ -116,14 +116,17 @@ export function createPlugin(config: AstroConfig, options: Required<IntegrationO
 
           // if no transforms were added, the original file will be returned as-is
           let data = file
-          let format = meta.format
+          let format: InputFormat | 'svg+xml' = meta.format
 
           if (transform) {
             const result = await globalThis.astroImage.defaultLoader.transform(file, transform)
             data = result.data
             format = result.format
           }
-
+          if (format === 'svg') {
+            format = 'svg+xml'
+          }
+          
           res.setHeader('Content-Type', `image/${format}`)
           res.setHeader('Cache-Control', 'max-age=360000')
 

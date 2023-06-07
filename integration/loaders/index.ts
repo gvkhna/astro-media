@@ -4,7 +4,7 @@ import {htmlColorNames, type NamedColor} from '../utils/colornames'
 export type InputFormat = 'heic' | 'heif' | 'avif' | 'jpeg' | 'jpg' | 'png' | 'tiff' | 'webp' | 'gif' | 'svg'
 
 export type OutputFormatSupportsAlpha = 'avif' | 'png' | 'webp'
-export type OutputFormat = OutputFormatSupportsAlpha | 'jpeg' | 'jpg'
+export type OutputFormat = OutputFormatSupportsAlpha | 'jpeg' | 'jpg' | 'svg'
 
 export type ColorDefinition =
   | NamedColor
