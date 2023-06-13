@@ -7,6 +7,7 @@ import type {ImageMetadata} from '../integration/utils/metadata'
 import type {AstroBuiltinAttributes} from 'astro'
 // @ts-expect-error
 import Image from "./Image.astro";
+import debug from 'debug';
 /////////// @ts-expect-error
 // import Picture from "./Picture.astro";
 
@@ -80,7 +81,8 @@ export async function resolveSrcAttr(propSrc: Promise<any> | string) {
   }
   if (propSrc && propSrc instanceof Promise) {
     let p = await propSrc
-    if (p && typeof p.hasOwnProperty === 'function' && p.hasOwnProperty('default') && p.default) {
+    debug('astro-media')('src promise: ', p, p.default)
+    if (p && p.default) {
       src = p.default
     }
   }
