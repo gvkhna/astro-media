@@ -105,7 +105,7 @@ export default function integration(options: IntegrationOptions = {}): AstroInte
         if (command === 'dev' || config.output === 'server') {
           injectRoute({
             pattern: ROUTE_PATTERN,
-            entryPoint: 'astro-media/integration/endpoint'
+            entryPoint: 'node_modules/astro-media/integration/endpoint'
           })
         }
 

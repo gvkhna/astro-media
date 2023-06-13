@@ -225,13 +225,16 @@ export async function getImage(
   debug('astro-media')('Image Src Resolved: ', imgSrc)
   let src: string
   let srcset: string
-  if (/^[\/\\]?@astroimage/.test(imgSrc)) {
+  if (/^[\/\\]?_astro/.test(imgSrc)) {
+    // production
+    src = `${imgSrc}`
+    // srcset = `${imgSrc} 2x,${imgSrc} 3x`
+  } else if (/^[\/\\]?_astro/.test(imgSrc)) {
     src = `${imgSrc}?${searchParams.toString()}`
-    srcset = `${imgSrc}?${searchParams2x.toString()} 2x,${imgSrc}?${searchParams3x.toString()} 3x`
   } else {
     searchParams.set('href', imgSrc)
     src = `/_image?${searchParams.toString()}`
-    srcset = `/_image?${searchParams2x.toString()} 2x, /_image?${searchParams3x.toString()} 3x`
+    // srcset = `/_image?${searchParams2x.toString()} 2x, /_image?${searchParams3x.toString()} 3x`
   }
 
   // // cache all images rendered to HTML
@@ -254,7 +257,11 @@ export async function getImage(
       height: resolved.height,
       alt: (resolved as any).alt,
       src,
-      srcset
+      // srcset,
+      loading: (resolved as any)?.loading,
+      crossorigin: (resolved as any)?.crossorigin,
+      sizes: (resolved as any)?.sizes,
+      referrerpolicy: (resolved as any)?.referrerpolicy
     }
   }
   
