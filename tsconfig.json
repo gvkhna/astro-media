@@ -15,6 +15,11 @@
     "module": "ESNext",
     "outDir": "./dist",
     "target": "ES6",
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": ["node_modules/@types"],
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      },
+    ],
   }
 }

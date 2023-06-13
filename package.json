@@ -1,7 +1,7 @@
 {
   "name": "astro-media",
   "description": "Load and transform images and svgs/vectors in your Astro site.",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "type": "module",
   "main": "./src/index.js",
   "types": "./dist/src/index.d.ts",
@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@altano/tiny-async-pool": "^1.0.2",
+    "@astrojs/ts-plugin": "^1.0.10",
     "fast-xml-parser": "^4.2.2",
     "http-cache-semantics": "^4.1.0",
     "image-size": "^1.0.2",
