@@ -80,7 +80,7 @@ export async function resolveSrcAttr(propSrc: Promise<any> | string) {
   }
   if (propSrc && propSrc instanceof Promise) {
     let p = await propSrc
-    if (p.hasOwnProperty('default') && p.default) {
+    if (p && typeof p.hasOwnProperty === 'function' && p.hasOwnProperty('default') && p.default) {
       src = p.default
     }
   }
