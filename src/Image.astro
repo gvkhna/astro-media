@@ -1,63 +1,73 @@
 ---
 // import {getImage} from '../dist/index.js'
-import * as fs from 'node:fs'
-import debug from 'debug'
-import {getImage, getImageType, getSVGAttributes, getSVGInnerHtml} from '../integration/lib/get-image'
-import {warnForMissingAlt, resolveSrcAttr} from './index.js'
+import * as fs from "node:fs";
+import debug from "debug";
+import {
+  getImage,
+  getImageType,
+  getSVGAttributes,
+  getSVGInnerHtml,
+} from "../integration/lib/get-image";
+import { warnForMissingAlt, resolveSrcAttr } from "./index.js";
 // import type {ImageComponentLocalImageProps, ImageComponentRemoteImageProps} from './index.js'
 // const {width, height} = Astro.props
 // export type Props = ImageComponentLocalImageProps | ImageComponentRemoteImageProps
-import type {HTMLAttributes} from 'astro/types'
+import type { HTMLAttributes } from "astro/types";
 
-export type ImgHTMLAttributes = HTMLAttributes<'img'>
+export type ImgHTMLAttributes = HTMLAttributes<"img">;
 
 export interface ImageComponentProps
-  extends Omit<ImgHTMLAttributes, 'src' | 'width' | 'height'> {
-  width?: number
-  height?: number
-  src: Promise<any>
-  svgInline?: boolean
-  debug?: boolean
+  extends Omit<ImgHTMLAttributes, "src" | "width" | "height"> {
+  width?: number;
+  height?: number;
+  src: Promise<any>;
+  svgInline?: boolean;
+  noTransforms?: boolean;
+  debug?: boolean;
   /** Defines an alternative text description of the image. Set to an empty string (alt="") if the image is not a key part of the content (it's decoration or a tracking pixel). */
-  alt: string
+  alt: string;
 }
-export type Props = ImageComponentProps
+export type Props = ImageComponentProps;
 
-const {loading = 'lazy', decoding = 'async', svgInline = true, debug: debugProp =false, ...props} = Astro.props
+const {
+  loading = "lazy",
+  decoding = "async",
+  svgInline = true,
+  noTransforms = false,
+  debug: debugProp = false,
+  ...props
+} = Astro.props;
 
 if (props.alt === undefined || props.alt === null) {
-  warnForMissingAlt()
+  warnForMissingAlt();
 }
-const src = await resolveSrcAttr(props.src)
-debug('astro-media')('loading src: ', props.src)
+const src = await resolveSrcAttr(props.src);
+debug("astro-media")("loading src: ", props.src);
 
-let isSvg = false
-let attrs: any = {}
+let isSvg = false;
+let attrs: any = {};
 
-let svgContent: string | undefined | null = undefined
+let svgContent: string | undefined | null = undefined;
 if (src) {
-  isSvg = getImageType(src) === 'svg'
+  isSvg = getImageType(src) === "svg";
   if (isSvg && svgInline) {
-    attrs = await getSVGAttributes(src, props)
-    svgContent = await getSVGInnerHtml(src)
+    attrs = await getSVGAttributes(src, props);
+    svgContent = await getSVGInnerHtml(src);
   } else {
-    attrs = await getImage(src, props as any, isSvg)
+    attrs = await getImage(src, props as any, isSvg, noTransforms);
   }
 } else {
-  debug('astro-media')(`ERROR: loading ${props.src}`)
+  debug("astro-media")(`ERROR: loading ${props.src}`);
 }
 
 if (debugProp) {
-  attrs['data-src'] = src
+  attrs["data-src"] = src;
 }
 ---
 
 {
   isSvg && svgInline && (
-    <svg
-      {...attrs}
-      set:html={svgContent ? svgContent : ''}
-    />
+    <svg {...attrs} set:html={svgContent ? svgContent : ""} />
   )
 }
 {(!isSvg || !svgInline) && <img {...attrs} />}

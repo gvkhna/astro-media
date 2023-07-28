@@ -180,7 +180,9 @@ function resolveTransform(
     ...rest
   } = transforms;
 
-  if (!width && !height) {
+  if (width && height) {
+    // bypass transforms
+  } else if (!width && !height) {
     // neither dimension was provided, use the file metadata
     width = metadata.width;
     height = metadata.height;
@@ -210,7 +212,8 @@ function resolveTransform(
 export async function getImage(
   moduleImportURL: string,
   transforms: GetImageTransform,
-  isSvg = false
+  isSvg = false,
+  noTransforms = false
 ): Promise<astroHTML.JSX.ImgHTMLAttributes> {
   const imageFileMetadata = parseImageFileMetadata(moduleImportURL);
 
@@ -265,9 +268,9 @@ export async function getImage(
     src = `${imgSrc}`;
     // srcset = `${imgSrc} 2x,${imgSrc} 3x`
   } else if (/^[\/\\]?_astro/.test(imgSrc)) {
-    src = `${imgSrc}?${searchParams.toString()}`;
+    src = `${imgSrc}?${noTransforms ? "" : searchParams.toString()}`;
   } else {
-    src = `${imgSrc}?${searchParams.toString()}`;
+    src = `${imgSrc}?${noTransforms ? "" : searchParams.toString()}`;
     // searchParams.set('href', imgSrc)
     // src = `/_image?${searchParams.toString()}`
     // srcset = `/_image?${searchParams2x.toString()} 2x, /_image?${searchParams3x.toString()} 3x`
