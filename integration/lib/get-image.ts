@@ -222,6 +222,18 @@ export async function getImage(
       `@astrojs/image: Image metadata not found for ${moduleImportURL}!`
     );
   }
+
+  // preserve data- attrs
+  const dataAttrs = Object.entries(transforms).reduce(
+    (accumulator, [key, value]) => {
+      if (key.startsWith("data-")) {
+        (accumulator as any)[key] = value;
+      }
+      return accumulator;
+    },
+    {}
+  );
+
   const resolved = resolveTransform(imageFileMetadata, transforms);
 
   const loader = sharpLoader;
@@ -288,6 +300,7 @@ export async function getImage(
       height: resolved.height,
       alt: (resolved as any).alt,
       src,
+      ...dataAttrs,
     };
   } else {
     return {
@@ -301,6 +314,7 @@ export async function getImage(
       crossorigin: (resolved as any)?.crossorigin,
       sizes: (resolved as any)?.sizes,
       referrerpolicy: (resolved as any)?.referrerpolicy,
+      ...dataAttrs,
     };
   }
 }
