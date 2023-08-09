@@ -18,7 +18,7 @@ import debug from "debug";
 
 export async function getImageMetadataQuery(path: string) {
   debug("astro-media")("getImageMetadataQuery path", path);
-  const imgPath = join(process.cwd(), "src", path);
+  const imgPath = join(process.cwd(), path);
   // const imgOutPath = relative(process.cwd(), path)
   const imgRelPath = relative(process.cwd(), imgPath);
   debug("astro-media")("getImageMetadataQuery: ", imgPath);
